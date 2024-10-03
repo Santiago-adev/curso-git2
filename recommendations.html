@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations</title>  
+</head>
+<body>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+}
+
+.recommendations-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2em;
+    color: #6a0dad;
+    margin-bottom: 20px;
+}
+
+.recommendations-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.recommendation {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    font-size: 1em;
+    color: #333;
+    line-height: 1.5;
+}
+
+.recommendation p {
+    margin: 0;
+    font-style: italic;
+    color: #333;
+}
+
+.submit-recommendation {
+    margin-top: 30px;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #6a0dad;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #5a009c;
+}
+
+/* Estilos para la ventana emergente */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.popup button {
+    margin-top: 10px;
+    background-color: #6a0dad;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.popup button:hover {
+    background-color: #5a009c;
+}
+
+    </style>
+    <div class="recommendations-section">
+        <div class="recommendations-section">
+            <h1>Recommendations</h1>
+    
+            <div id="recommendations-container" class="recommendations-container">
+                <div class="recommendation">
+                    <p>“Jane is a very quick learner and quickly grasps key concepts of Web development. She got a great attitude & she is an excellent team player. She has a curious mind and asks the right questions. She takes initiative within a team and has potentials to lead the team.”</p>
+                </div>
+    
+                <div class="recommendation">
+                    <p>“Working with Jane has been an awesome experience. She is highly knowledgeable and always takes the extra step to make sure everything is right. For any future projects that need her expertise, I would definitely want to work with her again.”</p>
+                </div>
+    
+                <div class="recommendation">
+                    <p>“I had worked along with Jane during the initial phase of our venture which needed Web development. She is a committed resource who has in-depth knowledge about the domain. She will be an asset for any organisation!”</p>
+                </div>
+            </div>
+    
+            <!-- Formulario de recomendación -->
+            <div class="submit-recommendation">
+                <h2>Submit a Recommendation</h2>
+                <textarea id="recommendation-text" placeholder="Write your recommendation here..."></textarea>
+                <button onclick="submitRecommendation()">Submit</button>
+            </div>
+        </div>
+    
+        <!-- Ventana emergente de confirmación -->
+        <div id="popup" class="popup">
+            <p>¡Gracias por enviar una recomendación!</p>
+            <button onclick="closePopup()">Cerrar</button>
+        </div>
+
+    <script>
+        function submitRecommendation() {
+    // Obtener el texto de la recomendación del textarea
+    var recommendationText = document.getElementById('recommendation-text').value;
+
+    // Verificar que no esté vacío
+    if (recommendationText.trim() === "") {
+        alert("Por favor, escribe una recomendación antes de enviarla.");
+        return;
+    }
+
+    // Crear un nuevo div para la recomendación
+    var newRecommendation = document.createElement('div');
+    newRecommendation.classList.add('recommendation');
+
+    // Añadir el texto de la recomendación en un párrafo
+    var newRecommendationText = document.createElement('p');
+    newRecommendationText.textContent = `“${recommendationText}”`;  // Añadir las comillas estilo cita
+
+    // Agregar el párrafo al div
+    newRecommendation.appendChild(newRecommendationText);
+
+    // Agregar el nuevo div de recomendación al contenedor de recomendaciones existentes
+    var recommendationsContainer = document.getElementById('recommendations-container');
+    recommendationsContainer.appendChild(newRecommendation);
+
+    // Limpiar el campo del textarea
+    document.getElementById('recommendation-text').value = '';
+
+    // Mostrar la ventana emergente de confirmación
+    document.getElementById('popup').style.display = 'block';
+}
+
+function closePopup() {
+    // Ocultar la ventana emergente
+    document.getElementById('popup').style.display = 'none';
+}
+
+
+    </script>
+</body>
+</html>
